@@ -1,8 +1,9 @@
 import { pool } from './database';
 
+//npx ts-node src/config/init-db.ts
+
 const createTables = async () => {
   try {
-    // Tabla de ejemplo para datos del Excel
     await pool.query(`
       CREATE TABLE IF NOT EXISTS runners (
         id SERIAL PRIMARY KEY,
@@ -12,7 +13,7 @@ const createTables = async () => {
         branch_position NUMERIC,
         category_position NUMERIC,
         laps NUMERIC,
-        distance NUMERIC,
+        distance VARCHAR(255),
         mode VARCHAR(255),
         category VARCHAR(255),
         branch VARCHAR(255),

@@ -11,7 +11,6 @@ export const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
-// Prueba la conexión
 pool.on('connect', () => {
   console.log('✅ Conectado a PostgreSQL');
 });
