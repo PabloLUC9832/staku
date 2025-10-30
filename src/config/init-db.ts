@@ -1,6 +1,6 @@
-import { pool } from './database';
+import { pool } from './database.js';
 
-//npx ts-node src/config/init-db.ts
+//npx tsx src/config/init-db.ts
 
 const createTables = async () => {
   try {
