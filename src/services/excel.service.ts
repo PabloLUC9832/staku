@@ -25,8 +25,27 @@ export class ExcelService {
     try {
       // Leer el archivo Excel
       const workbook = XLSX.readFile(filePath);
+      if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
+        return {
+          success: false,
+          message: 'El archivo Excel no contiene hojas',
+        };
+      }
       const sheetName = workbook.SheetNames[0];
+      if (!sheetName) {
+        return {
+          success: false,
+          message: 'El archivo Excel no contiene hojas',
+        };
+      }
       const worksheet = workbook.Sheets[sheetName];
+      // Verificar que la hoja exista
+      if (!worksheet) {
+        return {
+          success: false,
+          message: 'No se pudo leer la hoja del Excel',
+        };
+      }
 
       // Convertir a JSON
       const data: any[] = XLSX.utils.sheet_to_json(worksheet);
