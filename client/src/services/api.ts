@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type {Runner, ApiResponse} from '../types/runner.types';
 
-const API_URL = 'http://localhost:3000/api';
+//const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://staku.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_URL,
