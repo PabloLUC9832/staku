@@ -6,7 +6,7 @@ export interface Runner {
   branch_position: number;
   category_position: number;
   laps: number;
-  distance: number;
+  distance: string;
   mode: string;
   category: string;
   branch: string;
