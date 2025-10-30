@@ -10,19 +10,44 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS configurado para producción
-const corsOptions = {
-  origin: process.env.FRONTEND_URL
-      ? [process.env.FRONTEND_URL, 'http://localhost:5173', 'http://localhost:3000']
-      : '*',
+// CORS - Configuración simple y efectiva
+app.use(cors({
+  origin: [
+    'https://staku-1.onrender.com',
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ],
   credentials: true,
-  optionsSuccessStatus: 200
-};
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 600 // Cache preflight por 10 minutos
+}));
+
+// Headers adicionales de CORS (por si acaso)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+
+  // Manejar preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 // Middlewares
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Log de requests (para debugging)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  console.log(`${req.method} ${req.path} - Origin: ${req.get('origin') || 'No origin'}`);
+  next();
+});
 
 // Rutas
 app.get('/', (req: Request, res: Response) => {
@@ -74,7 +99,7 @@ app.get('/test-db', async (req: Request, res: Response) => {
 app.use('/api/admin', adminRoutes);
 app.use('/api/data', clientRoutes);
 
-// Manejo de rutas no encontradas - DEBE IR AL FINAL
+// Manejo de rutas no encontradas
 app.use((req: Request, res: Response) => {
   res.status(404).json({
     success: false,
