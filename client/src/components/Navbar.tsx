@@ -25,7 +25,7 @@ export const Navbar = () => {
               >
                 Ver Corredores
               </Link>
-              <Link
+              {/*<Link
                   to="/admin"
                   className={`px-4 py-2 rounded-lg transition-colors ${
                       isActive('/admin')
@@ -34,7 +34,7 @@ export const Navbar = () => {
                   }`}
               >
                 Panel Admin
-              </Link>
+              </Link>*/}
             </div>
           </div>
         </div>
