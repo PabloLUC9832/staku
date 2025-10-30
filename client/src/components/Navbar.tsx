@@ -6,12 +6,12 @@ export const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-      <nav className="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+      <nav className="bg-gradient-to-r from-violet-800 to-green-500 text-white shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <span className="text-2xl">🏃</span>
-              <h1 className="text-xl font-bold">Runners Manager</h1>
+              {/*<span className="text-2xl"></span>*/}
+              <h1 className="text-xl font-bold">Staku Track Run 2025 - Campeonato Nacional de 24 Hrs.</h1>
             </div>
 
             <div className="flex space-x-4">
