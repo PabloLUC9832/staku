@@ -1,4 +1,4 @@
-import express, { type Request, type Response } from 'express';
+import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { pool } from './config/database';
@@ -74,11 +74,22 @@ app.get('/test-db', async (req: Request, res: Response) => {
 app.use('/api/admin', adminRoutes);
 app.use('/api/data', clientRoutes);
 
-// Manejo de rutas no encontradas
-app.use('*', (req: Request, res: Response) => {
+// Manejo de rutas no encontradas - DEBE IR AL FINAL
+app.use((req: Request, res: Response) => {
   res.status(404).json({
     success: false,
     message: 'Ruta no encontrada',
+    path: req.path
+  });
+});
+
+// Manejo de errores global
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error('Error:', err);
+  res.status(500).json({
+    success: false,
+    message: 'Error interno del servidor',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
 });
 
