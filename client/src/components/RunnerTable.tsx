@@ -83,11 +83,14 @@ export const RunnerTable = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
+            <img src="Live.svg" alt="En vivo logo" width="50"></img>
             <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              Resultados de Corredores
+              Resultados en vivo
             </h2>
+            <img src="1920X1080_STAKU.png" alt="Staku portada" width="500"></img>
             <p className="text-gray-600">
               Total de corredores: <span className="font-semibold">{filteredRunners.length}</span>
+              {/*<br></br>Powered by: <span className="font-semibold"><img src="Logo PacerTime.svg" alt="PacerTime Logo" width="50"></img></span>*/}
             </p>
           </div>
 
@@ -256,6 +259,9 @@ export const RunnerTable = () => {
               </div>
           )}
         </div>
+        <center>
+        <br></br><h1>Powered by: </h1><img src="Logo PacerTime.svg" alt="PacerTime Logo" width="100"></img>
+        </center>
       </div>
   );
 };

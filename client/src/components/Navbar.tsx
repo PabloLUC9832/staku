@@ -12,8 +12,11 @@ export const Navbar = () => {
             <div className="flex items-center space-x-2">
               {/*<span className="text-2xl"></span>*/}
               <h1 className="text-xl font-bold">Staku Track Run 2025 - Campeonato Nacional de 24 Hrs.</h1>
+              
             </div>
-
+<img src="Logo PacerTime.svg" alt="PacerTime Logo" width="100"></img>
+<img src="Banner Staku.svg" alt="Staku Banner" width="120"></img>
+<img src="AMDUv2.svg" alt="AMDU" width="90"></img>
             <div className="flex space-x-4">
               <Link
                   to="/"
