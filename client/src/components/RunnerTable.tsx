@@ -83,9 +83,10 @@ export const RunnerTable = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
+            <img src="Medalla v2.svg" alt="En vivo logo" width="50"></img>
             {/*<img src="Live.svg" alt="En vivo logo" width="50"></img>*/}
             <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              Start list
+              Start List
             </h2>
             <img src="1920X1080_STAKU.png" alt="Staku portada" width="500"></img>
             <p className="text-gray-600">
